@@ -6,7 +6,7 @@ on:
     paths:
       - 'infra/**'
       - '.github/workflows/infra.yml'
-  workflow_dispatch:
+  # workflow_dispatch:
 
 jobs:
   Deploy-infra:
@@ -48,6 +48,7 @@ jobs:
       - name: Terraform Validate
         id: validate
         run: cd infra && terraform validate -no-color
+        
       - name: Terraform Plan
         run: cd infra && terraform plan -var="suscription_id=${{ secrets.SUSCRIPTION_ID }}" -var="sqladmin_username=${{ secrets.SQL_USER }}" -var="sqladmin_password=${{ secrets.SQL_PASS }}" -no-color -out main.tfplan
 
